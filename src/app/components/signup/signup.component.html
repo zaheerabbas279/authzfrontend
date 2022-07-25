@@ -1,0 +1,28 @@
+<h5 class="text-primary">Register yourself here!</h5>
+
+<div class="signupform">
+  <div class="w-50 d-flex flex-column">
+    <label for="email">Email</label>
+    <input
+      type="text"
+      name="email"
+      class="inp mt-2 mb-2"
+      [(ngModel)]="email"
+      id=""
+      placeholder="Enter your email"
+    />
+    <label for="password">Password</label>
+    <input
+      type="text"
+      name="password"
+      class="inp mt-2 mb-2"
+      [(ngModel)]="password"
+      id=""
+      placeholder="Enter your password"
+    />
+
+    <button class="mt-2 mb-2 btn btn-info text-light" (click)="signup()">
+      Sign up
+    </button>
+  </div>
+</div>

@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+.inp{
+    border: 1px solid #f3f3f3;
+    border-radius: 0px;
+    outline: none;
+    padding: 5px;
+    margin-top: 5px;
+}

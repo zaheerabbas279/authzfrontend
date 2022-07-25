@@ -1,0 +1,23 @@
+.heading{
+    text-align: right;
+}
+
+.userListDiv{
+    .username{
+        font-weight: bold;
+    }
+}
+
+.modal{
+    background: rgba(0,0,0, .5)
+};
+
+.card{
+    cursor: pointer;
+}
+
+.profilePic{
+    height: 10rem;
+    width: 15rem;
+    object-fit: contain;
+}
