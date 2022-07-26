@@ -6,7 +6,8 @@ import { CookieStore } from 'src/shared/helpers/CookieStore';
   providedIn: 'root'
 })
 export class UsersService {
-  _baseURL = "http://localhost:3100/";
+  // _baseURL = "http://localhost:4000/";
+  _baseURL = "https://nodeauthbackend.herokuapp.com/";
   constructor(private http: HttpClient) { }
 
   getAllUsers() {
