@@ -142,7 +142,7 @@ export class DashboardComponent implements OnInit {
     this.displayDetAddrStyle = "block";
     this.user.getAllDetailAddress().subscribe((res: any) => {
       if (res) {
-        console.log('res', res);
+        // console.log('res', res);
         res.map((item: any) => {
           if (item._id === item.detailAddr[0].user_id) {
             console.log("matched", item._id);
