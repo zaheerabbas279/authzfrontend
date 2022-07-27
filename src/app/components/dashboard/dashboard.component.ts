@@ -24,8 +24,18 @@ export class DashboardComponent implements OnInit {
   resprofile: any;
 
 
+  // detailed address
+  addrId: any;
+  pin: any;
+  state: any;
+
+  detailedAddress: any = {};
+
 
   displayStyle = "none";
+  displayAddrStyle = "none";
+  displayDetAddrStyle = "none";
+
   clickedUserData: any = {};
   userId: any;
   userForm = new FormGroup({
@@ -101,10 +111,67 @@ export class DashboardComponent implements OnInit {
       else {
         console.log('Error getting the data');
       }
+      this.getDetailedAddress();
     })
   }
+
+
+  getDetailedAddress() {
+    this.user.getDetailedAddressById(this.userId).subscribe((res: any) => {
+      if (res) {
+        this.detailedAddress = res;
+        console.log('the deltailed addres is', this.detailedAddress);
+      }
+      else {
+        console.log('error facing detailed address');
+      }
+    })
+  }
+
+
+  openPopupAddress() {
+    this.displayAddrStyle = "block";
+  }
+
+  address__: any;
+  openPopupShowDetailedAddrr() {
+    let id: any;
+    let userId: any;
+    let itemDet: any;
+    let addr: any;
+    this.displayDetAddrStyle = "block";
+    this.user.getAllDetailAddress().subscribe((res: any) => {
+      if (res) {
+        console.log('res', res);
+        res.map((item: any) => {
+          if (item._id === item.detailAddr[0].user_id) {
+            console.log("matched", item._id);
+          } else {
+            console.log("NO match", item._id);
+          }
+        })
+
+      }
+      else {
+        console.log('error while getting the details');
+
+      }
+    })
+  }
+
   closePopup() {
+    this.detailedAddress = "";
     this.displayStyle = "none";
+  }
+  closePopupAddress() {
+    this.pin = "";
+    this.addrId = "";
+    this.state = "";
+    this.displayAddrStyle = "none";
+  }
+
+  closePopupDetailedAddress() {
+    this.displayDetAddrStyle = "none";
   }
 
   updateuser() {
@@ -128,6 +195,24 @@ export class DashboardComponent implements OnInit {
         console.log('Error while updating the data');
       }
     })
+  }
+
+  addDetailedAddr() {
+    this.addrId = this.userId;
+    let data = {
+      user_id: this.addrId,
+      pin: this.pin,
+      state: this.state
+    }
+    this.user.addDetailedAddress(data).subscribe((res: any) => {
+      if (res) {
+        alert('Address addedd successfully!!');
+        console.log('detailed address addedd!');
+        this.closePopupAddress();
+      }
+    })
+    console.log('the detailed address is', data);
+
   }
 
   handleInputChange(e: any) {

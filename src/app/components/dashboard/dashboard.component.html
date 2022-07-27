@@ -186,6 +186,18 @@
                 placeholder="Enter your address"
                 class="inp"
               />
+
+              <ng-container *ngIf="!detailedAddress">
+                <p class="text-danger mt-3 mb-3">No Detailed Address</p>
+              </ng-container>
+              <ng-container *ngIf="detailedAddress">
+                <button
+                  class="btn btn-danger mt-3 mb-3"
+                  (click)="openPopupShowDetailedAddrr()"
+                >
+                  Show Detailed Address
+                </button>
+              </ng-container>
             </div>
             <div class="col-md-6">
               <label for="profile">Profile</label>
@@ -202,10 +214,109 @@
         </div>
       </div>
       <div class="modal-footer">
+        <button
+          class="btn btn-info mt-3 mb-3 text-light"
+          (click)="openPopupAddress()"
+        >
+          Add Detailed Address
+        </button>
         <button class="btn btn-success mt-3 mb-3" (click)="updateuser()">
           Update
         </button>
         <button type="button" class="btn btn-danger" (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- address modal -->
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayAddrStyle }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Detailed Address</h4>
+      </div>
+      <div class="modal-body">
+        <div class="formdiv d-flex flex-column">
+          <div class="row">
+            <label for="name" class="font-weight-bold">Pin</label>
+            <input
+              type="text"
+              name="name"
+              class="input px-2"
+              id="firstName"
+              placeholder="Enter First name"
+              [(ngModel)]="pin"
+              class="inp"
+            />
+            <label for="name" class="font-weight-bold">State</label>
+            <input
+              type="text"
+              name="name"
+              class="input px-2"
+              id="lastName"
+              placeholder="Enter last name"
+              [(ngModel)]="state"
+              class="inp"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-info mt-3 mb-3 text-light"
+          (click)="addDetailedAddr()"
+        >
+          Add
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="closePopupAddress()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- detailed address modal -->
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayDetAddrStyle }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Detailed Address</h4>
+      </div>
+      <div class="modal-body">
+        <div class="formdiv d-flex flex-column">
+          <div class="row">
+            <label for="name" class="font-weight-bold">Pin</label>
+            <h5>{{ detailedAddress.pin }}</h5>
+            <label for="name" class="font-weight-bold">State</label>
+            <h5>{{ detailedAddress.state }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="closePopupDetailedAddress()"
+        >
           Close
         </button>
       </div>
